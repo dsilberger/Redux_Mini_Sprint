@@ -1,63 +1,71 @@
-import { createStore, combineReducers } from "redux";
-
+import { createStore, combineReducers } from 'redux';
 
 const addNewMessageActionCreator = ({ userName, text }) => ({
-  type: "FILL_ME_IN",
+  type: 'ADD_MESSAGE',
   payload: { userName, text }
 });
 
-
-const addUserActionCreator = ({/*FILL ME IN*/ }) => ({
-  //complete this action creator
+const addUserActionCreator = ({ userName }) => ({
+  type: 'NEW_USER',
+  payload: { userName }
 });
 
-const defaultCurrentStudentAppState = { userName: "", text: "" };
+const defaultAppState = { userName: '', text: '' };
 
 const messagesReducer = function(previousState = defaultAppState, action) {
-  previousState = defaultCurrentStudentAppState,
-  action
- 
+  // (previousState = defaultAppState), action;
+
   // console.log(">>> ACTION OF Type >>> new message " + action.type);
   // console.log(">>> ACTION's PAYLOAD IS >>> new message ", action.payload);
   switch (action.type) {
-    case "ADD_MESSAGE":
+    case 'ADD_MESSAGE':
       return {
         userName: action.payload.userName,
         text: action.payload.text
       };
+    default:
+      return previousState;
+  }
 };
 
-const defaultStudentsAppState = {list: [], total: 0}
 const usersReducer = function(previousState = { userList: [] }, action) {
   // console.log(">>> ACTION OF Type >>> user " + action.type);
   //console.log(">>> ACTION's PAYLOAD IS >>> user ", action.payload);
-  switch (/* fill me in */) {
-    case "FILL_ME_IN":
+  switch (action.type) {
+    case 'NEW_USER':
       return {
-        userList: [...previousState.userList, action.payload],
+        userList: [...previousState.userList, action.payload]
       };
-      /* fill me in */
+    /* fill me in */
     default:
-      return /* fill me in */;
+      return previousState;
   }
 };
 
 const chatRoomReducer = function(previousState = [], action) {
-  //complete this reducer function
+  switch (action.type) {
+    case 'ADD_CHATROOM':
+      return {
+        chatList: [...previousState.chatList, action.payload]
+      };
+    default:
+      return previousState;
+  }
 };
 
 const rootReducer = combineReducers({
-  messages: messagesReducer
-  //add the rest of the reducers
+  messages: messagesReducer,
+  users: usersReducer,
+  chatList: chatRoomReducer
 });
 
 const storeInitialState = {
-  messages: { userName: "", text: "" },
+  messages: { userName: '', text: '' },
   users: {
     userList: []
   },
-    chatList: []
-} 
+  chatList: []
+};
 
 const store = createStore(rootReducer, storeInitialState);
 window.__store = store;
@@ -79,7 +87,10 @@ store.dispatch(addNewMessageActionCreator({
 
 */
 
-console.log("Current State before dispatching actions with action creator >>>", store.getState());
+console.log(
+  'Current State before dispatching actions with action creator >>>',
+  store.getState()
+);
 
 /* In messagesReducer, comment out the "case" after the switch statement 
 as well as the return statement right below the case.
@@ -94,7 +105,10 @@ Now let's handle that action by uncommenting the case and return statement. Note
 //   })
 // );
 
-  console.log("Current state after dispatching action with action creator >>>", store.getState());
+console.log(
+  'Current state after dispatching action with action creator >>>',
+  store.getState()
+);
 
 // store.dispatch(
 //   addNewMessageActionCreator({
@@ -109,12 +123,22 @@ Now let's handle that action by uncommenting the case and return statement. Note
 //    })
 //  );
 
-  
-  
-  
-  store.dispatch(/* dispatch more newMessageActionCreators */);
-  store.dispatch(/* dispatch usersActionCreators */);
-  
-  console.log("Current state after dispatching action with action creator >>>", store.getState());
-  
+// store.dispatch(
+//   addNewMessageActionCreator({
+//     userName: 'Dan',
+//     text: 'I am so confused'
+//   })
+// );
+// store.dispatch(
+//   addNewMessageActionCreator({
+//     userName: 'Still Dan',
+//     text: 'Not any less confused now'
+//   })
+// );
+
+console.log(
+  'Current state after dispatching action with action creator >>>',
+  store.getState()
+);
+
 export default store;

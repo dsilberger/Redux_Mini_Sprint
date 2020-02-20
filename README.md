@@ -2,9 +2,9 @@
 
 This sprint is intended to familiarize yourself with the Redux workflow before modularization and before connecting it with React in Recast.ly-Redux
 
-- [ ] To initialize a package.json file, from the root directory, run the command: `npm install`
+- [x] To initialize a package.json file, from the root directory, run the command: `npm install`
 
-- [ ] Start your server by running the command: `npm start`
+- [x] Start your server by running the command: `npm start`
 
 This runs the app in the development mode. **Open [http://localhost:3000](http://localhost:3000) to view it in the browser.** The page will reload if you make edits. You will also see any lint errors in the console.
 
@@ -56,7 +56,7 @@ Log the statement,
 
 ```javascript
 console.log(
-  "Current State before dispatching actions with action creator >>>",
+  'Current State before dispatching actions with action creator >>>',
   store.getState()
 );
 ```
@@ -68,8 +68,8 @@ uncomment the following function (then individually uncomment the remaining func
 ```javascript
 store.dispatch(
   addNewMessageActionCreator({
-    userName: "Lauren",
-    text: "Where should we go out to eat?"
+    userName: 'Lauren',
+    text: 'Where should we go out to eat?'
   })
 );
 ```
